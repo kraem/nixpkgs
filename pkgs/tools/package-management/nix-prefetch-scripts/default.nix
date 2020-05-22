@@ -14,7 +14,6 @@ let mkPrefetchScript = tool: src: deps:
       install -vD ${src} $out/bin/$name;
       wrapProgram $out/bin/$name \
         --prefix PATH : ${stdenv.lib.makeBinPath (deps ++ [ gnused nix ])} \
-        --set HOME /homeless-shelter
     '';
 
     preferLocalBuild = true;
