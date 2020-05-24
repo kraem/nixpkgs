@@ -33,6 +33,8 @@ type        = ARGV[0]
 name        = ARGV[1]
 version     = ARGV[2]
 build_flags = Shellwords.split(ARGV[3])
+
+type = "git" if type == "builtins-git"
 if type == "git"
   uri         = ARGV[4]
   REPO        = ARGV[5]
