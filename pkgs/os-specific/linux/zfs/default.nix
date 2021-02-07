@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchFromGitHub
+{ lib, stdenv, fetchFromGitHub, fetchpatch
 , autoreconfHook269, util-linux, nukeReferences, coreutils
 , perl, buildPackages, nixosTests
 , configFile ? "all"
@@ -184,6 +184,11 @@ let
           else false;
       };
     };
+
+  linux-rt-patch = fetchpatch {
+    url = "https://github.com/openzfs/zfs/commit/ab4fb9b74e9d089fc9a261c4f41e19697ad6a4ca.patch";
+    sha256 = "1nrxmb4rhrkgncav6dzwm66l0700fi72qkkcs0w6pkm850srws36";
+  };
 in {
   # also check if kernel version constraints in
   # ./nixos/modules/tasks/filesystems/zfs.nix needs
@@ -193,9 +198,11 @@ in {
     # incompatibleKernelVersion = "4.20";
 
     # this package should point to the latest release.
-    version = "2.0.2";
+    version = "2.0.0";
 
-    sha256 = "sha256-KzrRQwfQRvIQkHG5mj6cGBdcv2VEhC5y7bi09DaKqhY=";
+    sha256 = "1kriz6pg8wj98izvjc60wp23lgcp4k3mzhpkgj74np73rzgy6v8r";
+
+    extraPatches = [ linux-rt-patch ];
   };
 
   zfsUnstable = common {
@@ -203,8 +210,10 @@ in {
     # incompatibleKernelVersion = "4.19";
 
     # this package should point to a version / git revision compatible with the latest kernel release
-    version = "2.0.2";
+    version = "2.0.0";
 
-    sha256 = "sha256-KzrRQwfQRvIQkHG5mj6cGBdcv2VEhC5y7bi09DaKqhY=";
+    sha256 = "1kriz6pg8wj98izvjc60wp23lgcp4k3mzhpkgj74np73rzgy6v8r";
+
+    extraPatches = [ linux-rt-patch ];
   };
 }
