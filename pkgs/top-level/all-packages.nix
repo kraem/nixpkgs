@@ -29369,9 +29369,10 @@ with pkgs;
     electron = electron_17;
   };
 
-  wlroots = wlroots_0_15;
+  wlroots = wlroots_0_16;
   wlroots_0_14 = callPackage ../development/libraries/wlroots/0.14.nix { };
   wlroots_0_15 = callPackage ../development/libraries/wlroots/0.15.nix { };
+  wlroots_0_16 = callPackage ../development/libraries/wlroots/0.16.nix { };
 
   sway-unwrapped = callPackage ../applications/window-managers/sway { };
   sway = callPackage ../applications/window-managers/sway/wrapper.nix { };
